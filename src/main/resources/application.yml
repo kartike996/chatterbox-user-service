@@ -4,3 +4,7 @@ server:
 spring:
   application:
     name: chatterbox-user-service
+    
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/users

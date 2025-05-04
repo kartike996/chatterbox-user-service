@@ -1,20 +1,17 @@
 package com.chatterbox.userservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Document(collection = "users_collection")
+@Data
 public class User {
+	
+	@Id
     private String id;
+    
     private String userName;
+    
     private String email;
 }
