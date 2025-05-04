@@ -1,31 +1,36 @@
 package com.chatterbox.userservice.service;
 
 import com.chatterbox.userservice.model.User;
-import org.springframework.stereotype.Service;
+import com.chatterbox.userservice.repository.UserRepository;
 
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class UserService {
+    
+    @Autowired
+    private UserRepository userRepository;
 
-    private final List<User> mockDb = new ArrayList<>();
-
-    public User register(User user) {
-        user.setId("mock-" + (mockDb.size() + 1));
-        mockDb.add(user);
+    public User register(User user) throws Exception {
+    	
+    	if (userRepository.findByUserName(user.getUserName()).isPresent()) {
+            throw new Exception("User already exists");
+        }
+    	userRepository.save(user);
         return user;
     }
 
-    public User getUserById(String id) {
-        return mockDb.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
+    public User getUserById(String id) throws Exception {
+        return userRepository.findById(id).orElseThrow(() -> new Exception("User not found"));
     }
 
-    public User getUserByUserName(String userName) {
-        return mockDb.stream().filter(user -> user.getUserName().equals(userName)).findFirst().orElse(null);
+    public User getUserByUserName(String userName) throws Exception {
+        return userRepository.findByUserName(userName).orElseThrow(() -> new Exception("User not found"));
     }
 
     public List<User> getAll() {
-        return mockDb;
+        return userRepository.findAll();
     }
 }

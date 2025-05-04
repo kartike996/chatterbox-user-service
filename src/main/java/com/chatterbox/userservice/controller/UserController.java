@@ -21,18 +21,18 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
+    public User registerUser(@RequestBody User user) throws Exception {
         return userService.register(user);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable String id) {
+    public ResponseEntity<User> getUserById(@PathVariable String id) throws Exception {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/username/{username}")
-    public ResponseEntity<User> getUserByUserName(@PathVariable String username) {
+    public ResponseEntity<User> getUserByUserName(@PathVariable String username) throws Exception {
         User user = userService.getUserByUserName(username);
         return ResponseEntity.ok(user);
     }
