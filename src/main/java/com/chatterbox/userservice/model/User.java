@@ -7,6 +7,24 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * User represents a user entity within the system. This class is annotated with
+ * @Document to specify that it corresponds to a MongoDB collection.
+ *
+ * The fields of the User class are mapped to the respective attributes of a user,
+ * such as username, first name, last name, and email. These fields are also validated
+ * using Jakarta Validation annotations such as @NotBlank and @Email to ensure data integrity
+ * and correctness when interacting with the system.
+ *
+ * Key features of the User class:
+ * - The `userName` field is indexed and unique, ensuring no two users can have the same username.
+ * - The `userName` setter ensures that the username is stored in lowercase, making it case-insensitive.
+ * - The `@Indexed` annotation on the `userName` field enforces uniqueness at the database level.
+ * - The class uses Lombok annotations (@Data) to automatically generate getters, setters, and other boilerplate code.
+ *
+ * The User class plays a critical role in the system by representing the core user information
+ * that drives various operations such as registration, authentication, and user management.
+ */
 @Document(collection = "users_collection")
 @Data
 public class User {

@@ -10,6 +10,25 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * FallbackController handles requests to undefined or invalid endpoints within the application.
+ *
+ * This controller acts as a catch-all fallback for any request that does not match a defined route.
+ * It returns a standardized 404 Not Found response with details such as timestamp, status code,
+ * error type, and the requested invalid URI for better traceability and debugging.
+ *
+ * This is especially useful in REST APIs to provide meaningful error messages to clients when they
+ * hit incorrect URLs or routes that don't exist.
+ *
+ * Example:
+ *   Request: GET /api/invalid/path
+ *   Response: {
+ *       "timestamp": "...",
+ *       "status": 404,
+ *       "error": "Not Found",
+ *       "message": "Invalid endpoint: /api/invalid/path"
+ *   }
+ */
 @RestController
 public class FallbackController {
 

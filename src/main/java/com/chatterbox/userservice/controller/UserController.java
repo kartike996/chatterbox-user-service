@@ -21,23 +21,23 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * REST controller for handling user-related operations in the ChatterBox application.
+ * UserController is a REST controller that handles all HTTP requests related to user operations.
+ * It provides endpoints for registering, updating, retrieving, and deleting users, as well as
+ * handling invalid endpoint requests.
  *
- * This controller exposes endpoints to:
- * - Register a new user
- * - Update existing user details
- * - Fetch user information by ID or username
- * - Retrieve all registered users
- * - Delete a specific user or all users
- *
- * Each endpoint returns a standardized HTTP response with appropriate logging for traceability.
- * Input validation is enforced using Jakarta Bean Validation annotations.
- *
- * Base URL: /api/users
- *
- * Dependencies:
- * - UserService: business logic handler for user operations
- * - Log4j2: logging support for request tracking
+ * Key Endpoints:
+ * - `POST /register`: Registers a new user after validating the provided user data.
+ * - `POST /update`: Updates the details of an existing user.
+ * - `GET /{id}`: Retrieves a user by their unique ID.
+ * - `GET /username/{username}`: Retrieves a user by their username.
+ * - `GET /`: Retrieves a list of all users.
+ * - `DELETE /delete/{id}`: Deletes a user by their unique ID.
+ * - `DELETE /deleteAll`: Deletes all users from the system.
+ * - `RequestMapping "/**"`: Fallback handler for invalid or non-existent endpoints, returning a 404 error.
+
+ * The controller delegates business logic to the `UserService` class for processing user data.
+ * It uses `@Valid` to ensure incoming data is validated according to the constraints set on the `User` model.
+ * Logging is enabled to track user operations and any issues with the requests.
  */
 @RestController
 @RequestMapping("/api/users")

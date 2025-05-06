@@ -15,6 +15,33 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * GlobalExceptionHandler provides centralized exception handling across all controllers.
+ *
+ * Annotated with @RestControllerAdvice, this class intercepts exceptions thrown during the
+ * execution of REST API requests and returns standardized, user-friendly error responses.
+ *
+ * Handled Exceptions:
+ * - MethodArgumentNotValidException: Captures and returns validation errors for request payloads.
+ * - UserAlreadyExistsException: Thrown when attempting to register a user with duplicate username/email.
+ * - MandatoryFieldException: Triggered when required user input fields are missing.
+ * - UserDoesNotExistException: Raised when the specified user is not found in the system.
+ * - Exception: Catch-all handler for any unanticipated runtime errors.
+ *
+ * Each handler returns a consistent error structure with HTTP status, timestamp, error type,
+ * and a descriptive message to aid client-side debugging and user feedback.
+ *
+ * Example response:
+ * {
+ *   "timestamp": "2025-05-06T10:45:00",
+ *   "status": 400,
+ *   "error": "Validation Error",
+ *   "message": {
+ *     "userName": "Username is required",
+ *     "email": "Email format is invalid"
+ *   }
+ * }
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

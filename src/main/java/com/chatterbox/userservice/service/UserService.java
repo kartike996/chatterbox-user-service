@@ -10,6 +10,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * UserService is a service class responsible for handling the business logic related to user operations.
+ * It provides methods for registering, updating, retrieving, and deleting users, as well as validating
+ * user input and ensuring data consistency during operations.
+ *
+ * Key Methods:
+ * - `registerUser(User user)`: Registers a new user after validating the mandatory fields and checking for uniqueness.
+ * - `updateUser(User user)`: Updates an existing user by validating mandatory fields and ensuring no conflicts with other users.
+ * - `getUserById(String id)`: Retrieves a user by their unique ID, throwing an exception if the user is not found.
+ * - `getUserByUserName(String userName)`: Retrieves a user by their username, ensuring the username is checked in a case-insensitive manner.
+ * - `getAll()`: Retrieves a list of all users.
+ * - `deleteUser(String id)`: Deletes a user by their ID if found, or logs that the user does not exist.
+ * - `deleteAll()`: Deletes all users from the database.
+ *
+ * This service utilizes a repository to interact with the database and a validator to ensure that user data
+ * adheres to the required constraints and business rules. It handles errors such as non-existent users and
+ * conflicts like duplicate usernames or emails.
+ */
 @Service
 @AllArgsConstructor
 @Log4j2

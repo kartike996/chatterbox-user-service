@@ -8,17 +8,20 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
 /**
- * Utility class for validating user-related input data in the ChatterBox application.
+ * Validator is a component class responsible for validating various aspects of the User entity.
+ * It performs checks for mandatory fields, user uniqueness, and proper formatting of user data.
+ * The validations are used during user registration and update processes to ensure data integrity
+ * and prevent errors such as missing or duplicate values.
  *
- * This class contains static methods that:
- * - Ensure required user fields (firstName, userName, email, id) are not blank
- * - Check for duplicate user entries based on userName or email
+ * Key Methods:
+ * - `validateMandatoryFields(User user)`: Validates that all mandatory fields (e.g., first name, email, username) are provided and not empty.
+ * - `validateUserName(String userName)`: Validates that the username is not blank.
+ * - `validateUserId(String id)`: Validates that the user ID is not blank.
+ * - `validateUserUniquenessForRegistration(User user, UserRepository userRepository)`: Checks if the username or email already exists in the repository during user registration.
+ * - `validateUserUniquenessOnUpdate(User user, UserRepository userRepository)`: Checks if the username or email is already used by another user during user update.
  *
- * Throws custom exceptions such as:
- * - MandatoryFieldException: when a required field is missing or empty
- * - UserAlreadyExistsException: when a user with the same userName or email already exists
- *
- * Intended to be used by service-layer components to enforce data integrity before persisting user data.
+ * The class ensures that all necessary fields are present and that there are no duplicate usernames or emails,
+ * throwing appropriate exceptions when validation fails (e.g., `MandatoryFieldException`, `UserAlreadyExistsException`).
  */
 @Component
 public class Validator {
