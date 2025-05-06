@@ -97,7 +97,7 @@ public class UserController {
     }
 
     // Catch-all fallback for invalid sub-paths
-    @RequestMapping("*")
+    @RequestMapping("**")
     public ResponseEntity<Map<String, Object>> handleInvalidPath() {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
