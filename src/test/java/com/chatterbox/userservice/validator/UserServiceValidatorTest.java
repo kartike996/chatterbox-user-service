@@ -106,7 +106,7 @@ class UserServiceValidatorTest {
     }
 
     @Test
-    public void validateUserUniquenessForRegistration_validUser_noDuplicate() {
+     void validateUserUniquenessForRegistration_validUser_noDuplicate() {
         // Arrange: mock repository to return empty results for username and email
         when(userRepository.findByUserName(user.getUserName())).thenReturn(java.util.Optional.empty());
         when(userRepository.findByEmail(user.getEmail())).thenReturn(java.util.Optional.empty());
@@ -120,7 +120,7 @@ class UserServiceValidatorTest {
     }
 
     @Test
-    public void validateUserUniquenessForRegistration_duplicateUserName_throwsException() {
+     void validateUserUniquenessForRegistration_duplicateUserName_throwsException() {
         // Arrange:
         when(user.getUserName()).thenReturn("user");
         when(user.getId()).thenReturn("id");
@@ -145,7 +145,7 @@ class UserServiceValidatorTest {
     }
 
     @Test
-    public void validateUserUniquenessForRegistration_duplicateEmail_throwsException() {
+     void validateUserUniquenessForRegistration_duplicateEmail_throwsException() {
         // Arrange
         when(user.getEmail()).thenReturn("email@email.com");
         when(user.getId()).thenReturn("id");
@@ -172,7 +172,7 @@ class UserServiceValidatorTest {
     }
 
     @Test
-    public void validateUserUniquenessOnUpdate_duplicateUserName_throwsException() {
+     void validateUserUniquenessOnUpdate_duplicateUserName_throwsException() {
         // Arrange:
         when(user.getUserName()).thenReturn("user");
         when(user.getId()).thenReturn("id");
@@ -197,7 +197,7 @@ class UserServiceValidatorTest {
     }
 
     @Test
-    public void validateUserUniquenessOnUpdate_duplicateEmail_throwsException() {
+     void validateUserUniquenessOnUpdate_duplicateEmail_throwsException() {
         // Arrange
         when(user.getEmail()).thenReturn("email@email.com");
         when(user.getId()).thenReturn("id");
