@@ -40,7 +40,7 @@ class UserControllerTest {
     private User sampleUser;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         sampleUser = new User();
         sampleUser.setId("1");
         sampleUser.setUserName("john_doe");
@@ -50,7 +50,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void registerUser() throws Exception {
+    void registerUser() throws Exception {
         // Arrange
         String userJson = objectMapper.writeValueAsString(sampleUser);
         String successMessage = String.format("User registered with id %s, userName %s, firstName %s, lastName %s, and email %s",
@@ -69,7 +69,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void updateUser() throws Exception {
+    void updateUser() throws Exception {
         // Arrange
         String userJson = objectMapper.writeValueAsString(sampleUser);
         String successMessage = "User details updated";
@@ -87,7 +87,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void getUserById() throws Exception {
+    void getUserById() throws Exception {
         // Arrange
         when(userService.getUserById("1")).thenReturn(sampleUser);
 
@@ -102,7 +102,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void getUserByUserName() throws Exception {
+    void getUserByUserName() throws Exception {
         // Arrange
         when(userService.getUserByUserName("john_doe")).thenReturn(sampleUser);
 
@@ -117,7 +117,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void getAllUsers() throws Exception {
+    void getAllUsers() throws Exception {
         // Arrange
         when(userService.getAll()).thenReturn(List.of(sampleUser));
 
@@ -132,7 +132,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void deleteUser() throws Exception {
+    void deleteUser() throws Exception {
         // Arrange
         String successMessage = "User with id " + sampleUser.getId() + " is deleted or does not exist";
         when(userService.deleteUser("1")).thenReturn(successMessage);
@@ -147,7 +147,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void deleteAllUsers() throws Exception {
+    void deleteAllUsers() throws Exception {
         // Arrange
         String successMessage = "All users deleted";
         when(userService.deleteAll()).thenReturn(successMessage);
@@ -162,7 +162,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void handleInvalidPath() throws Exception {
+    void handleInvalidPath() throws Exception {
         // Act
         ResultActions result = mockMvc.perform(get("/api/users/deleteMe/id"));
 
