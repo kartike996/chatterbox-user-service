@@ -38,7 +38,7 @@ public class UserServiceValidator {
 
     public void validateUserName(String userName) {
         if (Strings.isBlank(userName)) {
-            throw new MandatoryFieldException("The field 1 is mandatory and cannot be null or empty.");
+            throw new MandatoryFieldException("The field userName is mandatory and cannot be null or empty.");
         }
     }
 
