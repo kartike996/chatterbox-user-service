@@ -3,7 +3,7 @@ package com.chatterbox.userservice.service;
 import com.chatterbox.userservice.exception.UserDoesNotExistException;
 import com.chatterbox.userservice.model.User;
 import com.chatterbox.userservice.repository.UserRepository;
-import com.chatterbox.userservice.validator.Validator;
+import com.chatterbox.userservice.validator.UserServiceValidator;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ import java.util.List;
 public class UserService {
     
     private UserRepository userRepository;
-    private Validator validator;
+    private UserServiceValidator validator;
 
     public String registerUser(User user) {
         validator.validateMandatoryFields(user);

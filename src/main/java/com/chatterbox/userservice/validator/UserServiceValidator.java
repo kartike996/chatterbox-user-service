@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  * throwing appropriate exceptions when validation fails (e.g., `MandatoryFieldException`, `UserAlreadyExistsException`).
  */
 @Component
-public class Validator {
+public class UserServiceValidator {
 
     public void validateMandatoryFields(User user) {
         if (Strings.isBlank(user.getFirstName())) {
