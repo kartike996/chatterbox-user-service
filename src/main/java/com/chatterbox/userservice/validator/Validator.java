@@ -48,14 +48,14 @@ public class Validator {
     public void validateUserUniquenessForRegistration(User user, UserRepository userRepository) {
         // Check for duplicate username
         userRepository.findByUserName(user.getUserName()).ifPresent(existingUser -> {
-            if (!existingUser.getId().equals(user.getId())) {
+            if (!existingUser.getId().equalsIgnoreCase(user.getId())) {
                 throw new UserAlreadyExistsException("Username " + user.getUserName() + " already exists.");
             }
         });
 
         // Check for duplicate email
         userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
-            if (!existingUser.getId().equals(user.getId())) {
+            if (!existingUser.getId().equalsIgnoreCase(user.getId())) {
                 throw new UserAlreadyExistsException("Email " + user.getEmail() + " already exists.");
             }
         });
@@ -64,14 +64,14 @@ public class Validator {
     public void validateUserUniquenessOnUpdate(User user, UserRepository userRepository) {
         // Check for duplicate username (only if used by another user)
         userRepository.findByUserName(user.getUserName()).ifPresent(existingUser -> {
-            if (!existingUser.getId().equals(user.getId())) {
+            if (!existingUser.getId().equalsIgnoreCase(user.getId())) {
                 throw new UserAlreadyExistsException("Username " + user.getUserName() + " already exists.");
             }
         });
 
         // Check for duplicate email (only if used by another user)
         userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
-            if (!existingUser.getId().equals(user.getId())) {
+            if (!existingUser.getId().equalsIgnoreCase(user.getId())) {
                 throw new UserAlreadyExistsException("Email " + user.getEmail() + " already exists.");
             }
         });
