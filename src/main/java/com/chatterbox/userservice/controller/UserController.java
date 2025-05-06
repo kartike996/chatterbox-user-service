@@ -22,7 +22,12 @@ public class UserController {
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) throws Exception {
-        return userService.register(user);
+        return userService.registerUser(user);
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@RequestBody User user) throws Exception {
+        return userService.updateUser(user);
     }
 
     @GetMapping("/{id}")
@@ -40,5 +45,10 @@ public class UserController {
     @GetMapping("getAll")
     public List<User> getAllUsers() {
         return userService.getAll();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable String id) {
+        return userService.deleteUser(id);
     }
 }
