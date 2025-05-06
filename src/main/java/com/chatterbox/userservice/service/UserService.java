@@ -28,6 +28,15 @@ public class UserService {
                 user.getId(), user.getUserName(), user.getFirstName(), user.getLastName(), user.getEmail());
     }
 
+    public String updateUser(User user) {
+        validator.validateMandatoryFields(user);
+        validator.validateUserUniquenessOnUpdate(user, userRepository);
+
+        userRepository.save(user);
+        log.info("User details updated for id: {}", user.getId());
+        return "User details updated";
+    }
+
     public User getUserById(String id) {
         validator.validateUserId(id);
         return userRepository.findById(id).orElseThrow(() ->
@@ -36,21 +45,12 @@ public class UserService {
 
     public User getUserByUserName(String userName) {
         validator.validateUserName(userName);
-        return userRepository.findByUserName(userName).orElseThrow(() ->
+        return userRepository.findByUserName(userName.toLowerCase()).orElseThrow(() ->
                 new UserDoesNotExistException("User with userName " + userName + " not found"));
     }
 
     public List<User> getAll() {
         return userRepository.findAll();
-    }
-
-    public String updateUser(User user) {
-        validator.validateMandatoryFields(user);
-        validator.validateUserUniquenessOnUpdate(user, userRepository);
-
-        userRepository.save(user);
-        log.info("User details updated for id: {}", user.getId());
-        return "User details updated";
     }
 
     public String deleteUser(String id) {

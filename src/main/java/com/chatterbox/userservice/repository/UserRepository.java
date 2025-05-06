@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User, String> {
 
-    Optional<User> findByUserName(String userName);
+    Optional<User> findByUserName(String userName); // case-sensitive but input is always lowercase
     Optional<User> findByEmail(String email);
 }
