@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 9091
 
 spring:
   application:
@@ -8,3 +8,7 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/users
+
+logging:
+  level:
+    com.chatterbox.userservice: INFO
